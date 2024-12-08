@@ -29,3 +29,12 @@ export const registerUser = async (req: Request, res: Response) => {
         res.json({data:null, error}).status(404);
     }
 };
+
+export const updateUser = async (req: Request, res: Response) => {
+    try {
+        const user = await AuthServer.updateUser(req.body);
+        res.json(user).status(201);
+    } catch (error) {
+        res.json({data:null, error}).status(404);
+    }
+};
