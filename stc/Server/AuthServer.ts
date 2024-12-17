@@ -1,7 +1,7 @@
 import { findItemDB, addNewItemDB } from "../DataLayer/AuthDBLayer";
 import LoginDTO from "../Types/DTO/LoginDTO";
 import { IUser } from "../Types/ModelsDB/UserModelDB";
-import IsEmail from "isemail";
+import validator from 'validator';
 import bcrypt from "bcrypt";
 import userModelDB from "../Types/ModelsDB/UserModelDB";
 
@@ -40,7 +40,7 @@ export default class AuthServer {
     public static registerUser = async (newUser: IUser) => {
         try {
             this.checkReq("register", newUser);
-            if (!IsEmail.validate(newUser.email)) throw new Error("Email is not valid");
+            if (!validator.isEmail(newUser.email)) throw new Error("Email is not valid");
 
             const password = bcrypt.hashSync(newUser.password, 10);
             newUser.password = password;
@@ -55,7 +55,7 @@ export default class AuthServer {
     public static updateUser = async (user: IUser) => {
         try {
             this.checkReq("register", user);
-            if (!IsEmail.validate(user.email)) throw new Error("Email is not valid");
+            if (!validator.isEmail(user.email)) throw new Error("Email is not valid");
             const userUpdated = await userModelDB.findOneAndUpdate({ _id: user._id }, user, { new: true });
             return userUpdated;
         } catch (error) {
