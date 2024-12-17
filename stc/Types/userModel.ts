@@ -5,7 +5,7 @@ export interface IUser {
     email: string;
     password: string;
     questions: mongoose.Types.ObjectId[];
-    responses: mongoose.Types.ObjectId[];
+    isAdmin: boolean;
     createdAt: Date;
-    updatedAt: Date;
+    
 }

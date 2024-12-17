@@ -6,9 +6,8 @@ export interface IUser extends mongoose.Document {
     email: string;
     password: string;
     questions: mongoose.Types.ObjectId[];
-    responses: mongoose.Types.ObjectId[];
+    isAdmin: boolean;
     createdAt: Date;
-    updatedAt: Date;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -27,8 +26,7 @@ const userSchema = new mongoose.Schema<IUser>({
          minlength: [6, 'Password must be at least 6 characters long']
          },
     questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question' }],
-    responses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Response' }],
-
+    isAdmin: { type: Boolean, default: false },
 });
 
 export default mongoose.model<IUser>('User', userSchema);

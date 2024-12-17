@@ -10,8 +10,6 @@ interface CustomRequest extends Request {
 
 export const newPost = async (req: Request, res: Response) => {
     try {
-        const post = req.body as IPost;
-        post.idCreator = (req as CustomRequest).user._id;
         const dataFromServer = await PostServer.createPost(req.body);
         res.json(dataFromServer);
     }

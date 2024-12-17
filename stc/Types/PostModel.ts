@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 export interface IPost extends mongoose.Document {
     _id: mongoose.Types.ObjectId,
-    idCreator: mongoose.Types.ObjectId
+    subject: string,
     header: string,
     content: string,
-    responses: mongoose.Types.ObjectId[];
+    endPost:string|null,
+    likes: {id: mongoose.Types.ObjectId, name: string, email: string,amount: number}[]|[],
 }
