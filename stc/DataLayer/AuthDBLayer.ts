@@ -1,10 +1,10 @@
-import UserDB, { IUser } from "../Types/ModelsDB/UserModelDB";
-import LoginDTO from "../Types/DTO/LoginDTO";
+import UserDB from "../Types/ModelsDB/UserModelDB";
 import mongoose ,{Types} from "mongoose";
 
-export const findItemDB = async(user: LoginDTO) => {
+export const findItemDB = async<T>(category:mongoose.Model<T>,key:string,value:any,populate:string|null=null) => {
     try {
-        return await UserDB.findOne({ email: user.email }).lean();
+        return  populate? await category.findOne({ [key]: value }as any ).populate(populate).lean():
+        await UserDB.findOne({[key]: value}).lean();
     }
     catch (err) {
         throw new Error((err as Error).message);
