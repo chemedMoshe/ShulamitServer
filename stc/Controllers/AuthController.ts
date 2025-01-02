@@ -14,16 +14,17 @@ export const loginUser = async (req: Request, res: Response) => {
           process.env.JWT_SECRET as string,
           { expiresIn: "1d" }
        );
-        res.cookie("tocken", token);
+        res.cookie("token", token);
         res.json(user).status(200);
     } catch (error) {
-       res.json({data:null, error:error}).status(404);
+       res.status(404).json({data:null, Error:error});
     }
 };
 
 export const registerUser = async (req: Request, res: Response) => {
     try {
         const user = await AuthServer.registerUser(req.body);
+        
         res.json(user).status(201);
     } catch (error) {
         res.json({data:null, error}).status(404);

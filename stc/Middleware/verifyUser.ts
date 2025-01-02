@@ -6,7 +6,7 @@ export interface CustomRequest extends Request {
    }
 const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = req.cookies.tocken;        
+        const token = req.cookies.token;        
         if (!token) {
              res.status(401).json({ message: "Unauthorized" });
              return

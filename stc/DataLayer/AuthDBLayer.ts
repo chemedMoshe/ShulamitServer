@@ -11,8 +11,19 @@ export const findItemDB = async<T>(category:mongoose.Model<T>,key:string,value:a
     }
 };
 
+export const findUserByEmail = async (email: string) => {
+    try {
+        return await UserDB.findOne({ email }).lean();
+    }
+    catch (err) {
+        throw new Error((err as Error).message);
+    }
+}
+
 export const addNewItemDB = async <T>(type: mongoose.Model<T>, user: T) => {
     try {
+        const ifExsist = await type.findOne({ email: (user as any).email });
+        if (ifExsist) throw new Error("כתובת המייל כבר קיימת");
         return await type.create(user);
     }
     catch (err) {

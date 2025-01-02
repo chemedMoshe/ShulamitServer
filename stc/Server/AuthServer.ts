@@ -23,7 +23,7 @@ export default class AuthServer {
         try {
             this.checkReq("login", user);
 
-            const existUser = await findItemDB<IUser>(userModelDB,"email", user.email, "questions");
+            const existUser = await findItemDB<IUser>(userModelDB,"email", user.email);
             if (!existUser) throw new Error("User not found");
 
             const isMatch = await bcrypt.compareSync(user.password, existUser.password);
