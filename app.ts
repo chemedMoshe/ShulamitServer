@@ -3,9 +3,9 @@ import "dotenv/config";
 import cors from "cors";
 import authRouter from "./stc/Routers/AuthRouter";
 import { connectDB } from "./stc/config/connectDB";
-import  verifyUser from "./stc/Middleware/verifyUser";
 import cookieParser from "cookie-parser";
 import postRouter from "./stc/Routers/PostsRouter";
+import PostServer from "./stc/Server/PostServers";
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,7 +21,7 @@ app.use(exp.json());
 
 app.use('/auth', authRouter);
 
-app.use("/post", verifyUser,postRouter);
+app.use("/post",postRouter);
 
 
 app.listen(PORT, 

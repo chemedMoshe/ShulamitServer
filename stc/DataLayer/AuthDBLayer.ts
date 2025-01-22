@@ -31,14 +31,7 @@ export const addNewItemDB = async <T>(type: mongoose.Model<T>, user: T) => {
     }
 };
 
-export const getAllItemsDB = async <T>(type: mongoose.Model<T>) => {
-    try {
-        return await type.find({}).lean();
-    }
-    catch (err) {
-        throw new Error((err as Error).message);
-    }
-}
+
 
 export const updateItemDB = async <T>(type: mongoose.Model<T>, _id:Types.ObjectId ,item: T) => {
     try {

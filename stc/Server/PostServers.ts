@@ -1,19 +1,21 @@
-import { addNewItemDB, getAllItemsDB, updateItemDB } from "../DataLayer/AuthDBLayer";
+import { updateItemDB } from "../DataLayer/AuthDBLayer";
+import { addNewItemDB, getAllItemsDB } from "../DataLayer/PostDBLayer";
 import { IPost } from "../Types/PostModel";
 import PostDBModel from "../Types/ModelsDB/PostDBModel";
 import mongoose from "mongoose";
+import { INewPostDTO } from "../Types/DTO/Post/NewPostDTO";
 
 export default class PostServer {
-private static checkPost = (post: IPost) => {
+private static checkPost = (post: INewPostDTO) => {
     if (!post.subject || !post.header || !post.content) {
         throw new Error("All fields must be filled");
     }
 }
 
-    public static createPost = async (post: IPost) => {
+    public static createPost = async (post: INewPostDTO) => {
         try {
             this.checkPost(post);
-            return await addNewItemDB<IPost>(PostDBModel,post);
+            return await addNewItemDB(post);
         }
         catch (err) {
             throw (err as Error).message;
