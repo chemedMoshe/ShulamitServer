@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema<IUser>({
          required: [true, 'Password is required'],
          minlength: [6, 'Password must be at least 6 characters long']
          },
-    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question' }],
+    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question', default: []}],
     isAdmin: { type: Boolean, default: false },
 });
 
