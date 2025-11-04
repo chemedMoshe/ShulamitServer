@@ -4,7 +4,7 @@ import verifyUser from "../Middleware/verifyUser";
 
 const router = Router();
 
-router.get("/all", getAllPosts);
+router.get("/all", verifyUser,getAllPosts);
 
 router.post("/new", verifyUser, newPost);
 
