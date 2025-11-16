@@ -11,6 +11,7 @@ export const loginUser = async (req: Request, res: Response) => {
         _id: user._id!,
         name: user.name!,
         email: user.email!,
+        isAdmin: user.isAdmin
       },
       process.env.JWT_SECRET as string,
       { expiresIn: "1d" }

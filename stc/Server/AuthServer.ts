@@ -29,8 +29,8 @@ export default class AuthServer {
             const isMatch = await bcrypt.compareSync(user.password, existUser.password);
             if (!isMatch) throw new Error("Incorrect password");
 
-            const { _id, name, email } = existUser;
-            return { _id, name, email };
+            const { _id, name, email,isAdmin } = existUser;
+            return { _id, name, email,isAdmin };
         }
         catch (err) {
             throw (err as Error).message;

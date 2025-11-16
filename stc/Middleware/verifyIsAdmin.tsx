@@ -1,17 +1,18 @@
+import { NextFunction, Request, Response } from "express";
 import JWT, { JwtPayload } from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
+import { CustomRequest } from "./verifyUser";
 
-export interface CustomRequest extends Request {
-    user: string | JwtPayload;
-   }
-const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
+
+
+const verifyIsAdmin = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.cookies.token;        
         if (!token) {
              res.status(401).json({ message: "Unauthorized" });
              return
         }
-        const decoded = JWT.verify(token, process.env.JWT_SECRET as string);
+        const decoded: any = JWT.verify(token, process.env.JWT_SECRET as string);
+        if (!decoded?.isAdmin) return res.status(401).json({ message: "Unauthorized" });
         (req as CustomRequest).user = decoded;
         next();
     } catch (error) {
@@ -20,4 +21,4 @@ const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export default verifyUser;
+export default verifyIsAdmin;
