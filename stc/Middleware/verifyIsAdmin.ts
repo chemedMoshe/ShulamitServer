@@ -12,7 +12,10 @@ const verifyIsAdmin = async (req: Request, res: Response, next: NextFunction) =>
              return
         }
         const decoded: any = JWT.verify(token, process.env.JWT_SECRET as string);
-        if (!decoded?.isAdmin) return res.status(401).json({ message: "Unauthorized" });
+        if (!decoded?.isAdmin) {
+            res.status(401).json({ message: "Unauthorized" });
+            return 
+        }
         (req as CustomRequest).user = decoded;
         next();
     } catch (error) {

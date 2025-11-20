@@ -28,6 +28,16 @@ export const logoutUser = (req: Request, res: Response) => {
   res.json({message:"user is logout"})
 };
 
+export const isLoginUser = (req: Request, res: Response)=>{
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+    res.status(200).json(decoded) 
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
 export const registerUser = async (req: Request, res: Response) => {
   try {
     const user = await AuthServer.registerUser(req.body);
