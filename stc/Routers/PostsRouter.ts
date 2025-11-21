@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/all", verifyUser,getAllPosts);
 
-router.post("/new", isAdminVerify, newPost);
+router.post("/", isAdminVerify, newPost);
 
 router.put("/update/:id", isAdminVerify ,updatePost);
 
