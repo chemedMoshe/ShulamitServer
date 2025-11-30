@@ -43,6 +43,6 @@ export const deletePost = async (req: Request, res: Response) => {
         res.status(200).json(dataFromServer);
     }
     catch (err) {
-        res.json({ data: null, error: err }).status(400);
+        res.status(400).json({ data: null, error: err });
     }
 }

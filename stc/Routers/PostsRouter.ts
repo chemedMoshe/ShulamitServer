@@ -11,7 +11,7 @@ router.post("/", isAdminVerify, newPost);
 
 router.put("/update/:id", isAdminVerify ,updatePost);
 
-router.delete("/delete/:_id", isAdminVerify, deletePost);
+router.delete("/delete/:id", isAdminVerify, deletePost);
 
 
 export default router;

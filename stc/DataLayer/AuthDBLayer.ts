@@ -54,7 +54,9 @@ export const deleteItemDB = async <T>(
   _id: Types.ObjectId
 ) => {
   try {
-    await type.findByIdAndDelete(_id);
+    console.log(_id)
+    const data = await type.findByIdAndDelete(_id);
+    if (!data) throw ("Item not found");
     return { message: "Item deleted successfully", _id };
   } catch (err) {
     throw new Error((err as Error).message);
