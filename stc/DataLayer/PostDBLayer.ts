@@ -17,7 +17,7 @@ export const addNewItemDB = async ( post:INewPostDTO) => {
     try {
         const newItem = new PostDBModel(post);
         await newItem.save();
-        return "success";
+        return newItem;
     }
     catch (err) {
         throw new Error((err as Error).message);
