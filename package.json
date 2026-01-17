@@ -22,6 +22,8 @@
     "@types/validator": "^13.12.2"
   },
   "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/app.js",
     "dev": "nodemon ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
     
