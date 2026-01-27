@@ -13,7 +13,7 @@ const app = exp();
 
 connectDB();
 
-app.use(cors({ origin: "https://shulamitbar.netlify.app/",credentials: true}))
+app.use(cors({ origin: "https://shulamitbar.netlify.app",credentials: true}))
 
 app.use(cookieParser());
 
