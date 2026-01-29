@@ -1,8 +1,9 @@
-import JWT, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
+import { IUser } from "../Types/userModel";
+import JWT from "jsonwebtoken";
 
 export interface CustomRequest extends Request {
-    user: string | JwtPayload;
+    user:string | JWT.JwtPayload | IUser
    }
 const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
