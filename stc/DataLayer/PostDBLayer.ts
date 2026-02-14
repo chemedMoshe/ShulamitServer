@@ -4,7 +4,7 @@ import PostDBModel from "../Types/ModelsDB/PostDBModel";
 
 export const getAllItemsDB = async <T>(type: mongoose.Model<T>) => {
     try {
-        return await type.find({}).lean();
+        return await type.find({}).sort({_id: -1}).lean();
     }
     catch (err) {
         throw new Error((err as Error).message);
