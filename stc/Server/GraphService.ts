@@ -1,11 +1,12 @@
+import { ObjectId } from "mongoose";
 import { createNewGraphDB, getGraphByUserId } from "../DataLayer/GraphDBLayer";
-import { IDataGraphDTO } from "../Types/DTO/DataGraphDTO";
-import { IDataGraph } from "../Types/GraphModel";
+import { IDataGraphDTO } from "../Types/DTO/Graph/DataGraphDTO";
+import { IDataGraph } from "../Types/DTO/Graph/DataGraph";
 
 export default class GraphService {
   public static createGraph = async (dataGraph: IDataGraphDTO, userId: string) => {
     try {
-      const newDataGraph = { 
+      const newDataGraph: IDataGraphDTO= { 
         ...dataGraph, 
         userId: userId,
         entryTime: new Date()
